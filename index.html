@@ -3,657 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Broconnect Biz LLP | AI-Powered Digital Marketing Agency</title>
-    <!-- Google Fonts & FontAwesome Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <title>Broconnect Biz LLP | Home - Digital Marketing Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Chart.js for Animated Visualizations -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-dark: #070913;
-            --bg-card: rgba(15, 23, 42, 0.75);
-            --primary-glow: #00f2fe;
-            --secondary-glow: #4facfe;
-            --purple-glow: #7f00ff;
-            --accent-green: #10b981;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border-color: rgba(255, 255, 255, 0.12);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 15% 15%, rgba(0, 242, 254, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 85% 65%, rgba(127, 0, 255, 0.08) 0%, transparent 40%);
-        }
-
-        /* Ambient Animated Grid */
-        .bg-grid {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-size: 50px 50px;
-            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        /* Glassmorphism Header */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 18px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(7, 9, 19, 0.8);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 1000;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-
-        .logo-badge {
-            width: 42px;
-            height: 42px;
-            background: linear-gradient(135deg, var(--primary-glow), var(--purple-glow));
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            color: #fff;
-            font-size: 1.2rem;
-            box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
-        }
-
-        .logo-text {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #fff;
-            letter-spacing: 0.5px;
-        }
-
-        .logo-text span {
-            color: var(--primary-glow);
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 28px;
-        }
-
-        nav a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--primary-glow);
-            text-shadow: 0 0 8px rgba(0, 242, 254, 0.5);
-        }
-
-        .btn-glow {
-            padding: 10px 24px;
-            border-radius: 30px;
-            background: linear-gradient(135deg, var(--primary-glow), var(--secondary-glow));
-            color: #000;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-glow:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 30px rgba(0, 242, 254, 0.6);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 160px 8% 100px;
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .hero-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 16px;
-            border-radius: 20px;
-            background: rgba(0, 242, 254, 0.1);
-            border: 1px solid rgba(0, 242, 254, 0.3);
-            color: var(--primary-glow);
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 24px;
-        }
-
-        .hero h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 3.5rem;
-            line-height: 1.15;
-            margin-bottom: 20px;
-            background: linear-gradient(180deg, #ffffff 0%, #a5f3fc 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 32px;
-        }
-
-        .hero-btns {
-            display: flex;
-            gap: 16px;
-        }
-
-        .btn-outline {
-            padding: 12px 28px;
-            border-radius: 30px;
-            border: 1px solid var(--border-color);
-            color: #fff;
-            text-decoration: none;
-            font-weight: 600;
-            backdrop-filter: blur(10px);
-            transition: 0.3s;
-        }
-
-        .btn-outline:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: var(--primary-glow);
-        }
-
-        /* AI Interactive Dashboard Card */
-        .ai-dashboard-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            padding: 24px;
-            backdrop-filter: blur(20px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-            position: relative;
-        }
-
-        .ai-dashboard-card::before {
-            content: '';
-            position: absolute;
-            top: -1px;
-            left: 20%;
-            right: 20%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--primary-glow), transparent);
-        }
-
-        /* Services Grid */
-        .services-section {
-            padding: 100px 8%;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-header h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.5rem;
-            margin-bottom: 12px;
-        }
-
-        .section-header p {
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-        }
-
-        .service-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 30px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--primary-glow);
-            box-shadow: 0 10px 30px rgba(0, 242, 254, 0.15);
-        }
-
-        .service-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            background: rgba(0, 242, 254, 0.1);
-            color: var(--primary-glow);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            margin-bottom: 20px;
-        }
-
-        .service-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 12px;
-        }
-
-        .service-card p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            line-height: 1.5;
-            margin-bottom: 20px;
-        }
-
-        .price-tag {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--primary-glow);
-        }
-
-        /* Lead Capture Form Section */
-        .contact-section {
-            padding: 100px 8%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .form-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            padding: 40px;
-            backdrop-filter: blur(20px);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 14px 18px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--border-color);
-            color: #fff;
-            outline: none;
-            transition: 0.3s;
-        }
-
-        .form-control:focus {
-            border-color: var(--primary-glow);
-            box-shadow: 0 0 12px rgba(0, 242, 254, 0.2);
-        }
-
-        /* WhatsApp Floating Chatbot */
-        .whatsapp-widget {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 1000;
-        }
-
-        .whatsapp-btn {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: #25d366;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .whatsapp-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .chat-box {
-            position: absolute;
-            bottom: 80px;
-            right: 0;
-            width: 330px;
-            background: #0f172a;
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            overflow: hidden;
-            display: none;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-        }
-
-        .chat-box.active {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .chat-header {
-            background: #1e293b;
-            padding: 16px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .chat-body {
-            padding: 16px;
-            max-height: 250px;
-            overflow-y: auto;
-        }
-
-        .chat-msg {
-            background: rgba(255,255,255,0.06);
-            padding: 10px 14px;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            margin-bottom: 10px;
-            line-height: 1.4;
-        }
-
-        .chat-footer {
-            padding: 12px;
-            background: #1e293b;
-            display: flex;
-            gap: 8px;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @media (max-width: 900px) {
-            .hero, .contact-section { grid-template-columns: 1fr; }
-            header nav { display: none; }
-            .hero h1 { font-size: 2.5rem; }
-        }
+        body { background-color: #030712; color: #f3f4f6; font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass-panel { background: rgba(17, 24, 39, 0.7); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .gradient-text { background: linear-gradient(135deg, #06b6d4, #3b82f6, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     </style>
 </head>
-<body>
+<body class="bg-gray-950 text-gray-100">
 
-    <div class="bg-grid"></div>
-
-    <!-- Header Navigation -->
-    <header>
-        <a href="#" class="logo-container">
-            <div class="logo-badge">B</div>
-            <div class="logo-text">BROCONNECT <span>BIZ LLP</span></div>
-        </a>
-        <nav>
-            <ul>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#analytics">AI Growth</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-        <a href="#contact" class="btn-glow">Get Started</a>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div>
-            <div class="hero-tag">
-                <i class="fa-solid => fa-wand-magic-sparkles"></i> AI-Powered Digital Marketing
-            </div>
-            <h1>Building Brands. Connecting Businesses. Creating Growth.</h1>
-            <p>Broconnect Biz LLP leverages AI strategy, creative positioning, and targeted performance marketing to turn online presence into sustainable revenue.</p>
-            <div class="hero-btns">
-                <a href="#contact" class="btn-glow">Start Growing Now</a>
-                <a href="https://wa.me/919392095454?text=Hi%20Broconnect%20Biz%20LLP,%20I'm%20interested%20in%20your%20digital%20marketing%20services." target="_blank" class="btn-outline">
-                    <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 left-0 w-full z-50 glass-panel border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="index.html" class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center font-extrabold text-xl text-white">BB</div>
+                    <span class="text-lg font-bold tracking-wider text-white">BROCONNECT BIZ <span class="text-cyan-400">LLP</span></span>
+                </a>
+                <div class="hidden md:flex space-x-8 text-sm font-medium">
+                    <a href="index.html" class="text-cyan-400 font-bold">Home</a>
+                    <a href="about.html" class="hover:text-cyan-400 transition">About Us</a>
+                    <a href="services.html" class="hover:text-cyan-400 transition">Services & Pricing</a>
+                    <a href="approach.html" class="hover:text-cyan-400 transition">Our Approach</a>
+                    <a href="contact.html" class="hover:text-cyan-400 transition">Contact Us</a>
+                </div>
+                <a href="https://wa.me/919392095454" target="_blank" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm flex items-center gap-2">
+                    <i class="fab fa-whatsapp text-lg"></i> Direct Chat
                 </a>
             </div>
         </div>
+    </nav>
 
-        <!-- AI Animated Chart Card -->
-        <div class="ai-dashboard-card" id="analytics">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-                <div>
-                    <h4 style="font-size:1rem;">Live Marketing Performance</h4>
-                    <p style="font-size:0.8rem; color:var(--text-muted);">Real-Time Campaign Optimization</p>
+    <!-- HERO -->
+    <section class="pt-36 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+                <span class="px-4 py-1.5 rounded-full glass-panel text-xs font-bold text-cyan-400 border border-cyan-500/30">AI-Powered Digital Marketing</span>
+                <h1 class="text-4xl sm:text-6xl font-extrabold leading-tight">Building Brands. <br> Connecting Businesses. <br><span class="gradient-text">Creating Growth.</span></h1>
+                <p class="text-gray-400 text-base leading-relaxed">Broconnect Biz LLP helps startups, entrepreneurs, and established enterprises build a strong digital presence, reach target audiences, and generate qualified business leads.</p>
+                <div class="flex gap-4">
+                    <a href="contact.html" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-bold text-sm shadow-lg shadow-cyan-500/20">Get Started</a>
+                    <a href="services.html" class="px-6 py-3.5 rounded-xl glass-panel text-white font-bold text-sm border border-gray-700">Explore Services</a>
                 </div>
-                <span style="color:var(--accent-green); font-weight:700; font-size:0.85rem;"><i class="fa-solid fa-arrow-trend-up"></i> +284% ROI</span>
             </div>
-            <canvas id="growthChart" height="200"></canvas>
-        </div>
-    </section>
-
-    <!-- Services Grid -->
-    <section class="services-section" id="services">
-        <div class="section-header">
-            <h2>Complete Digital Growth Solutions</h2>
-            <p>Targeted strategies engineered for startups, professionals, and scaling enterprises.</p>
-        </div>
-
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon"><i class="fa-solid fa-code"></i></div>
-                <h3>Website Design & Dev</h3>
-                <p>High-conversion responsive websites with WhatsApp integration and basic SEO optimization.</p>
-                <div class="price-tag">Starting ₹9,999</div>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon"><i class="fa-solid fa-hashtag"></i></div>
-                <h3>Social Media Marketing</h3>
-                <p>Consistent content planning, creative design, engagement, and monthly performance tracking.</p>
-                <div class="price-tag">Starting ₹7,999 / mo</div>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon"><i class="fa-solid fa-bullseye"></i></div>
-                <h3>Performance Marketing</h3>
-                <p>Data-driven ad campaigns on Meta and Google for verified lead generation and conversion.</p>
-                <div class="price-tag">Starting ₹7,999 / mo</div>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
-                <h3>Search Engine Optimization</h3>
-                <p>On-page, technical, and local SEO to ensure top visibility when clients search for your services.</p>
-                <div class="price-tag">Starting ₹6,999 / mo</div>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon"><i class="fa-solid fa-palette"></i></div>
-                <h3>Branding & Visual Identity</h3>
-                <p>Logo creation, visual identity systems, typography, and professional media kits.</p>
-                <div class="price-tag">Starting ₹7,999</div>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon"><i class="fa-solid fa-robot"></i></div>
-                <h3>WhatsApp Automation</h3>
-                <p>Automated lead workflows, instant auto-responders, and basic CRM integrations.</p>
-                <div class="price-tag">Starting ₹9,999</div>
+            <div class="glass-panel p-6 rounded-3xl border border-gray-800">
+                <h3 class="text-sm font-bold text-cyan-400 mb-4">Neural Reach & Growth Analytics</h3>
+                <div class="h-64"><canvas id="homeChart"></canvas></div>
             </div>
         </div>
     </section>
 
-    <!-- Contact & Google Sheets Lead Sync Form -->
-    <section class="contact-section" id="contact">
-        <div>
-            <h2 style="font-family:'Space Grotesk'; font-size:2.5rem; margin-bottom:16px;">Let's Build Something That Grows.</h2>
-            <p style="color:var(--text-muted); margin-bottom:30px;">Fill out your requirements below. All enquiries are synced directly with our active lead management dashboard.</p>
-            
-            <div style="display:flex; flex-direction:column; gap:16px;">
-                <div><i class="fa-solid fa-envelope" style="color:var(--primary-glow); margin-right:10px;"></i> kamleshjhariya1111@gmail.com</div>
-                <div><i class="fa-solid fa-phone" style="color:var(--primary-glow); margin-right:10px;"></i> +91 9392095454</div>
-                <div><i class="fa-solid fa-location-dot" style="color:var(--primary-glow); margin-right:10px;"></i> Manikonda Jagir, Hyderabad, Telangana</div>
-            </div>
-        </div>
-
-        <div class="form-card">
-            <form id="leadForm">
-                <div class="form-group">
-                    <label>Full Name</label>
-                    <input type="text" id="name" class="form-control" placeholder="Enter your full name" required>
-                </div>
-                <div class="form-group">
-                    <label>Phone Number</label>
-                    <input type="tel" id="phone" class="form-control" placeholder="Enter your mobile number" required>
-                </div>
-                <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
-                </div>
-                <div class="form-group">
-                    <label>Required Service</label>
-                    <select id="service" class="form-control" style="background:#0f172a;">
-                        <option>Website Design & Development</option>
-                        <option>Social Media Marketing</option>
-                        <option>Performance Marketing (Ads)</option>
-                        <option>SEO Services</option>
-                        <option>Branding & Design</option>
-                        <option>WhatsApp Automation</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn-glow" style="width:100%; padding:14px;">Submit Enquiry</button>
-            </form>
-            <div id="formStatus" style="margin-top:15px; text-align:center; color:var(--accent-green); display:none;">
-                <i class="fa-solid fa-circle-check"></i> Enquiry received! Our team will contact you shortly.
-            </div>
-        </div>
-    </section>
-
-    <!-- Floating WhatsApp Widget -->
-    <div class="whatsapp-widget">
-        <div class="chat-box" id="chatBox">
-            <div class="chat-header">
-                <div style="width:10px; height:10px; background:#25d366; border-radius:50%;"></div>
-                <strong>Broconnect Biz Assistant</strong>
-            </div>
-            <div class="chat-body">
-                <div class="chat-msg">👋 Hi there! Welcome to Broconnect Biz LLP. How can we help grow your business today?</div>
-            </div>
-            <div class="chat-footer">
-                <input type="text" id="waMsg" class="form-control" placeholder="Type a message..." style="padding:8px 12px; font-size:0.85rem;">
-                <button onclick="sendWAMessage()" class="btn-glow" style="padding:8px 14px;"><i class="fa-solid fa-paper-plane"></i></button>
-            </div>
-        </div>
-        <div class="whatsapp-btn" onclick="toggleChat()">
-            <i class="fa-brands fa-whatsapp"></i>
-        </div>
-    </div>
+    <!-- FOOTER -->
+    <footer class="py-8 border-t border-gray-800 text-center text-xs text-gray-500">
+        <p>© 2026 Broconnect Biz LLP. All rights reserved. | <a href="contact.html" class="text-cyan-400">Contact Us</a></p>
+    </footer>
 
     <script>
-        // Initialize Chart.js Performance Visualization
-        const ctx = document.getElementById('growthChart').getContext('2d');
+        const ctx = document.getElementById('homeChart').getContext('2d');
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6'],
-                datasets: [{
-                    label: 'Client Enquiries Generated',
-                    data: [12, 28, 45, 80, 120, 195],
-                    borderColor: '#00f2fe',
-                    backgroundColor: 'rgba(0, 242, 254, 0.1)',
-                    borderWidth: 3,
-                    fill: true,
-                    tension: 0.4
-                }]
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{ label: 'Performance Velocity', data: [20, 35, 60, 95, 140, 210], borderColor: '#06b6d4', backgroundColor: 'rgba(6,182,212,0.1)', fill: true, tension: 0.4 }]
             },
-            options: {
-                responsive: true,
-                plugins: { legend: { display: false } },
-                scales: {
-                    x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } },
-                    y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } }
-                }
-            }
-        });
-
-        // WhatsApp Floating Widget Functions
-        function toggleChat() {
-            const chat = document.getElementById('chatBox');
-            chat.classList.toggle('active');
-        }
-
-        function sendWAMessage() {
-            const msg = document.getElementById('waMsg').value;
-            if (msg.trim() !== "") {
-                const url = `https://wa.me/919392095454?text=${encodeURIComponent(msg)}`;
-                window.open(url, '_blank');
-            }
-        }
-
-        // Form Lead Sync Simulation
-        document.getElementById('leadForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Collect Form Values
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const email = document.getElementById('email').value;
-            const service = document.getElementById('service').value;
-
-            // Display Local Confirmation
-            document.getElementById('formStatus').style.display = 'block';
-
-            // Optional: Automatically notify via WhatsApp
-            setTimeout(() => {
-                const waUrl = `https://wa.me/919392095454?text=New%20Website%20Enquiry%0AName:%20${encodeURIComponent(name)}%0APhone:%20${encodeURIComponent(phone)}%0AService:%20${encodeURIComponent(service)}`;
-                window.open(waUrl, '_blank');
-            }, 1000);
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
         });
     </script>
 </body>
